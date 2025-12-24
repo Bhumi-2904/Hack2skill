@@ -55,7 +55,7 @@ function attachAdminHandlers() {
     generateBtn.innerText = "Thinking...";
 
     try {
-      const res = await fetch("http://localhost:5002/generate", {
+      const res = await fetch("https://hack2skill-62n0.onrender.com/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title, date })
