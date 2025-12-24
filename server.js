@@ -45,10 +45,10 @@ app.post("/generate", async (req, res) => {
       }
     );
 
-    console.log("🌐 Gemini status:", response.status);
+    console.log("Gemini status:", response.status);
 
     const data = await response.json();
-    console.log("🤖 Gemini raw response:", JSON.stringify(data, null, 2));
+    console.log("Gemini raw response:", JSON.stringify(data, null, 2));
 
     const text = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
 
@@ -59,20 +59,14 @@ app.post("/generate", async (req, res) => {
       });
     }
 
-    // ✅ NORMAL SUCCESS RESPONSE
     res.json({ text });
 
 
   } catch (err) {
     console.error("🔥 Gemini error:", err);
-    res.status(500).json({ text: "AI broke internally 💀" });
+    res.status(500).json({ text: "AI broke internally " });
   }
 });
-
-app.get("/", (req, res) => {
-  res.send("🔥 Hapnin backend is running");
-});
-
 
 const PORT = process.env.PORT || 5002;
 
