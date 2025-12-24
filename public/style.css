@@ -1,0 +1,358 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #0b0b1e;
+  color: #fff;
+}
+
+/* BACKGROUND GRADIENT */
+.bg-gradient {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.08), transparent 40%),
+    linear-gradient(135deg, #7f3cff, #2b1055);
+  z-index: -2;
+}
+
+/* HERO SECTION */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-left: 8%;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+
+/* OUTLINED BRAND NAME */
+.brand-outline {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3.8rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: transparent;
+  -webkit-text-stroke: 1.8px rgba(255, 255, 255, 0.9);
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* MAIN HOOK LINE */
+.hero-content h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 15px;
+  letter-spacing: -0.5px;
+}
+
+/* TAGLINE */
+.tagline {
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 30px;
+}
+
+/* SCROLL HINT */
+.scroll-hint {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  display: inline-block;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.scroll-hint:hover {
+  opacity: 1;
+  transform: translateY(4px);
+}
+/* EVENTS SECTION */
+.events-section {
+  background: #f4f6fb;
+  color: #222;
+  padding: 80px 8%;
+}
+
+.events-section h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  font-weight: 600;
+}
+
+/* EVENTS GRID */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* EVENT CARD */
+.event-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+.event-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.event-date {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.event-desc {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.5;
+}
+
+.calendar-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #7f3cff;
+  border: 2px solid #7f3cff;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.calendar-btn:hover {
+  background-color: #7f3cff;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .brand-outline {
+    font-size: 3rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .tagline {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-outline {
+    font-size: 2.6rem;
+  }
+
+  .hero-content h1 {
+    font-size: 1.9rem;
+  }
+
+  .tagline {
+    font-size: 0.8rem;
+  }
+}
+
+/* AUTH + ADMIN LAYOUT */
+.page-center {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  color: #0b0b1e;
+}
+
+.card h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.card input,
+.card textarea,
+.card select,
+.card button {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 0.95rem;
+}
+
+.card button {
+  background: #7f3cff;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.card button:hover {
+  opacity: 0.9;
+}
+
+.card small {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  opacity: 0.7;
+}
+
+.page-center {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;   /* vertical centering */
+  align-items: center;       /* horizontal centering */
+}
+
+.auth-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;       /* center horizontally */
+}
+
+.auth-hero {
+  text-align: center;
+  margin-bottom: 24px;       /* space between text and card */
+}
+
+.auth-hero h1 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-top: 10px;
+}
+
+.center-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* horizontal centering */
+  justify-content: center;  /* vertical centering of stack */
+}
+
+.delete-btn {
+  margin-top: 8px;
+  padding: 6px 12px;
+  background: #c0393b;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  opacity: 0.85;
+}
+
+
+/* ===========================
+   MOBILE RESPONSIVENESS
+   =========================== */
+
+@media (max-width: 768px) {
+
+  /* General page padding */
+  body {
+    padding: 0;
+  }
+
+  /* AUTH & ADMIN CONTAINERS */
+  .page-center {
+    padding: 20px;
+  }
+
+  .auth-stack,
+  .center-stack {
+    width: 100%;
+  }
+
+  /* CARDS */
+  .card {
+    width: 100%;
+    max-width: 100%;
+    padding: 22px;
+    border-radius: 14px;
+  }
+
+  /* HEADINGS */
+  .auth-hero h1,
+  .card h2 {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  /* INPUTS & BUTTONS */
+  .card input,
+  .card textarea,
+  .card select,
+  .card button {
+    font-size: 0.95rem;
+    padding: 12px;
+  }
+
+  /* ADMIN PAGE FIXES */
+  .admin-page .card {
+    margin-bottom: 20px;
+  }
+
+  /* EVENT ADMIN LIST */
+  #adminEvents div {
+    font-size: 0.9rem;
+  }
+}
+
+/* EXTRA SMALL PHONES */
+@media (max-width: 480px) {
+
+  .brand-outline {
+    font-size: 2.4rem;
+  }
+
+  .auth-hero h1 {
+    font-size: 1.25rem;
+    line-height: 1.3;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .card button {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+}

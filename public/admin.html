@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hapnin' | Campus Events</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body class="admin-page">
+    <div class="bg-gradient"></div>
+
+<div class="page-center">
+    <div class="center-stack">
+
+    <div class="auth-hero">
+      <h1>Set the vibe. Create what’s happening next.</h1>
+    </div>
+
+  <div class="card">
+    <h2>Admin Panel</h2>
+
+    <input id="eventTitle" placeholder="Event Title" />
+    <input type="date" id="eventDate" />
+
+    <button id="generateBtn">Generate Description</button>
+
+    <textarea id="eventDescription" rows="4"
+      placeholder="Event description..."></textarea>
+
+    <button id="saveBtn">Save Event</button>
+  </div>
+  <!-- MANAGE EVENTS -->
+<div class="card" style="margin-top: 30px;">
+  <h3 style="text-align:center; margin-bottom:15px; font-size: 22px;">
+    Manage Events
+  </h3>
+
+  <div id="adminEvents"></div>
+</div>
+
+</div>
+
+<script type="module" src="js/admin.js"></script>
+
+</body>
+</html>
