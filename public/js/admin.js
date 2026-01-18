@@ -85,7 +85,7 @@ function attachAdminHandlers() {
 
     try {
       const res = await fetch(
-        "https://hack2skill-62n0.onrender.com/generate",
+        "https://hack2skill-62n0.onrender.com",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
