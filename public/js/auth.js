@@ -21,27 +21,26 @@ import {
 document.body.style.visibility = "hidden";
 
 onAuthStateChanged(auth, async (user) => {
-
-  // ✅ RUN REDIRECT LOGIC ONLY ON LOGIN / SIGNUP PAGES
   const isAuthPage =
     location.pathname.includes("login") ||
     location.pathname.includes("signup");
 
+  // auth.js should NOT control other pages
   if (!isAuthPage) {
     document.body.style.visibility = "visible";
     return;
   }
 
-  // ✅ USER NOT LOGGED IN → SHOW PAGE
+  // user not logged in → show page
   if (!user) {
     document.body.style.visibility = "visible";
     return;
   }
 
-  // ✅ USER LOGGED IN → CHECK ROLE
+  // user logged in → check role
   const snap = await getDoc(doc(db, "users", user.uid));
 
-  // 🔐 Firestore doc might not exist yet (Google first login)
+  // Firestore doc may not exist yet (Google first login)
   if (!snap.exists()) {
     document.body.style.visibility = "visible";
     return;
@@ -50,7 +49,7 @@ onAuthStateChanged(auth, async (user) => {
   const role = snap.data().role;
 
   window.location.href =
-    role === "admin" ? "admin.html" : "events.html";
+    role === "admin" ? "/admin.html" : "/events.html";
 });
 
 /* =================================
@@ -88,7 +87,7 @@ function initAuth() {
           role: "student"
         });
 
-        window.location.href = "events.html";
+        window.location.href = "/events.html";
 
       } catch (err) {
         console.error(err);
@@ -114,10 +113,10 @@ function initAuth() {
           email,
           password
         );
-        const snap = await getDoc(doc(db, "users", user.uid));
+
+        const snap = await getDoc(doc(db, "users", cred.user.uid));
 
         if (!snap.exists()) {
-          // Firestore doc not ready yet, wait silently
           document.body.style.visibility = "visible";
           return;
         }
@@ -125,8 +124,7 @@ function initAuth() {
         const role = snap.data().role;
 
         window.location.href =
-          role === "admin" ? "admin.html" : "events.html";
-
+          role === "admin" ? "/admin.html" : "/events.html";
 
       } catch (err) {
         console.error(err);
@@ -143,14 +141,14 @@ function initAuth() {
       const userRef = doc(db, "users", cred.user.uid);
       const snap = await getDoc(userRef);
 
-      // First-time Google user
+      // first-time Google user
       if (!snap.exists()) {
         await setDoc(userRef, {
           role: "student"
         });
       }
 
-      window.location.href = "events.html";
+      window.location.href = "/events.html";
 
     } catch (err) {
       console.error(err);
