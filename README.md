@@ -1,6 +1,6 @@
-# Hack2Skill – Campus Event Reminder & AI Assistant
+# Hapnin – Campus Event Reminder & AI Assistant
 
-Hack2Skill is a full-stack web application built to centralize campus event discovery for students and provide administrators with an efficient dashboard to create and manage events.  
+Hapnin is a full-stack web application built to centralize campus event discovery for students and provide administrators with an efficient dashboard to create and manage events.  
 The platform integrates Firebase for authentication and real-time data storage, along with a Node.js backend that powers AI-based event description generation.
 
 ---
