@@ -9,7 +9,7 @@ The platform integrates Firebase for authentication and real-time data storage, 
 
 In many college campuses, event information is scattered across WhatsApp groups, notice boards, and social media platforms. This leads to poor visibility, missed events, and inefficient coordination.
 
-Hack2Skill solves this by offering a single, centralized platform where:
+Hapnin (Campus-Event-Reminder) solves this by offering a single, centralized platform where:
 - Students can view all upcoming events
 - Admins can manage events easily
 - AI assists in generating professional event descriptions
@@ -18,7 +18,7 @@ Hack2Skill solves this by offering a single, centralized platform where:
 
 ## 💡 Solution Overview
 
-Hack2Skill is a role-based system with two main user flows:
+Hapnin is a role-based system with two main user flows:
 
 - **Students** can sign up, log in, and browse upcoming campus events.
 - **Admins** can log in to an admin dashboard where they can create, view, and delete events using AI-assisted descriptions.
