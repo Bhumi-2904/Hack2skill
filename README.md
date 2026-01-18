@@ -103,6 +103,7 @@ The frontend and backend are deployed separately to ensure scalability, security
 ├── .gitignore
 ├── .env # Environment variables (not committed)
 └── README.md
+```
 
 ---
 
