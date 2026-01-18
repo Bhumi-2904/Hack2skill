@@ -1,51 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hapnin' | Campus Events</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&family=Poppins:wght@400;600;700&display=swap"
-    rel="stylesheet">
-
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <nav class="navbar">
-    <div class="nav-left">
-      <span class="nav-logo">Hapnin'</span>
-    </div>
 
-    <div class="nav-right" id="navActions">
-      <!-- injected by JS -->
-    </div>
-  </nav>
-
-  <!-- BACKGROUND -->
   <div class="bg-gradient"></div>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="hero-content">
-      <span class="brand-outline">Hapnin'</span>
-      <h1>If it’s happening,<br>it’s here.</h1>
-      <p class="tagline">
-        Discover campus events. Connect. Create unforgettable memories.
-      </p>
-      <div class="hero-actions" id="heroActions">
-        <!-- Buttons will be injected by JS -->
+  <div class="page-center">
+    <div class="auth-stack">
+      <div class="auth-hero hero-content">
+        <span class="brand-outline">Hapnin'</span>
+        <h1>If it’s happening, it’s here.</h1>
       </div>
 
-    </div>
-  </section>
+      <div class="card hero-actions">
+        <button onclick="location.href='login.html'">
+          I’m a Student
+        </button>
 
-  <script type="module" src="js/landing.js"></script>
-  <script type="module" src="js/navbar.js"></script>
+        <button onclick="location.href='admin-login.html'">
+          Admin Login
+        </button>
+      </div>
+    </div>
+  </div>
 
 </body>
-
 </html>

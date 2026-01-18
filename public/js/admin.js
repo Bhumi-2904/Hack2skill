@@ -1,3 +1,5 @@
+document.body.style.visibility = "hidden";
+
 import { auth, db } from "./firebase.js";
 import {
   onAuthStateChanged,
@@ -13,7 +15,6 @@ import {
   getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-console.log("✅ ADMIN JS LOADED");
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
@@ -46,6 +47,8 @@ onAuthStateChanged(auth, async (user) => {
       window.location.href = "index.html";
     };
   }
+
+  document.body.style.visibility = "visible";
 
   attachAdminHandlers();
   loadAdminEvents();

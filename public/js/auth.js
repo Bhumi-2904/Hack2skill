@@ -1,28 +1,56 @@
 import { auth, db } from "./firebase.js";
+
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
 import {
   doc,
   setDoc,
   getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-  initAuth();
+/* =================================
+   REDIRECT LOGGED-IN USERS
+   (ONLY ON LOGIN / SIGNUP PAGES)
+   ================================= */
+document.body.style.visibility = "hidden";
+
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    document.body.style.visibility = "visible";
+    return;
+  }
+
+  const snap = await getDoc(doc(db, "users", user.uid));
+  const role = snap.data()?.role;
+
+  window.location.href =
+    role === "admin" ? "admin.html" : "events.html";
 });
+
+/* =================================
+   INIT AUTH
+   ================================= */
+document.addEventListener("DOMContentLoaded", initAuth);
 
 function initAuth() {
   const signupBtn = document.getElementById("signupBtn");
   const loginBtn = document.getElementById("loginBtn");
+  const googleSignupBtn = document.getElementById("googleSignupBtn");
+  const googleLoginBtn = document.getElementById("googleLoginBtn");
 
-  /* SIGNUP */
+  const provider = new GoogleAuthProvider();
+
+  /* ========= STUDENT SIGNUP (EMAIL) ========= */
   if (signupBtn) {
     signupBtn.addEventListener("click", async () => {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
-      const role = document.getElementById("role").value;
 
       if (!email || !password) {
         alert("Fill all the fields");
@@ -30,14 +58,18 @@ function initAuth() {
       }
 
       try {
-        const cred = await createUserWithEmailAndPassword(auth, email, password);
+        const cred = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
 
         await setDoc(doc(db, "users", cred.user.uid), {
-          role
+          role: "student"
         });
 
-        window.location.href =
-          role === "admin" ? "admin.html" : "index.html";
+        window.location.href = "events.html";
+
       } catch (err) {
         console.error(err);
         alert(err.message);
@@ -45,7 +77,7 @@ function initAuth() {
     });
   }
 
-  /* LOGIN */
+  /* ========= LOGIN (EMAIL) ========= */
   if (loginBtn) {
     loginBtn.addEventListener("click", async () => {
       const email = document.getElementById("email").value;
@@ -57,17 +89,53 @@ function initAuth() {
       }
 
       try {
-        const cred = await signInWithEmailAndPassword(auth, email, password);
+        const cred = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
 
         const snap = await getDoc(doc(db, "users", cred.user.uid));
-        const role = snap.data().role;
+        const role = snap.data()?.role;
 
         window.location.href =
           role === "admin" ? "admin.html" : "events.html";
+
       } catch (err) {
         console.error(err);
         alert(err.message);
       }
     });
+  }
+
+  /* ========= GOOGLE SIGNUP / LOGIN ========= */
+  async function googleAuth() {
+    try {
+      const cred = await signInWithPopup(auth, provider);
+
+      const userRef = doc(db, "users", cred.user.uid);
+      const snap = await getDoc(userRef);
+
+      // First-time Google user
+      if (!snap.exists()) {
+        await setDoc(userRef, {
+          role: "student"
+        });
+      }
+
+      window.location.href = "events.html";
+
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
+  }
+
+  if (googleSignupBtn) {
+    googleSignupBtn.addEventListener("click", googleAuth);
+  }
+
+  if (googleLoginBtn) {
+    googleLoginBtn.addEventListener("click", googleAuth);
   }
 }

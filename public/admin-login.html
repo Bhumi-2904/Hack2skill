@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hapnin' | Student Signup</title>
+  <title>Hapnin' | Admin Login</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
   <div class="bg-gradient"></div>
@@ -16,32 +14,23 @@
     <div class="auth-stack">
       <div class="auth-hero">
         <span class="brand-outline">Hapnin'</span>
-        <h1>Join the campus vibe</h1>
+        <h1>Admin Access</h1>
       </div>
 
       <div class="card">
-        <h2>Create Student Account</h2>
+        <h2>Admin Login</h2>
 
         <input type="email" id="email" placeholder="Email" />
         <input type="password" id="password" placeholder="Password" />
 
-        <button id="signupBtn">Create Account</button>
+        <button id="loginBtn">Login</button>
 
-        <button id="googleSignupBtn" class="google-btn">
-          Continue with Google
-        </button>
-
-        <hr style="margin: 16px 0; opacity: 0.3;">
-
-        <small>
-          Already have an account?
-          <a href="login.html">Login</a>
-        </small>
+        <small>Restricted access only</small>
       </div>
     </div>
   </div>
 
-  <script type="module" src="js/auth.js"></script>
+  <!-- IMPORTANT: ONLY admin-auth.js -->
+  <script type="module" src="js/admin-auth.js"></script>
 </body>
-
 </html>

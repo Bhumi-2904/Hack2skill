@@ -9,6 +9,7 @@ body {
   background-color: #0b0b1e;
   color: #fff;
 }
+
 /* BACKGROUND GRADIENT – HERO FIX */
 .bg-gradient {
   position: fixed;
@@ -77,6 +78,7 @@ body {
   opacity: 1;
   transform: translateY(4px);
 }
+
 /* EVENTS SECTION */
 .events-section {
   background: #f4f6fb;
@@ -190,7 +192,7 @@ body {
   background: #ffffff;
   padding: 32px;
   border-radius: 16px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
   color: #0b0b1e;
 }
 
@@ -234,19 +236,23 @@ body {
 .page-center {
   min-height: 100vh;
   display: flex;
-  justify-content: center;   /* vertical centering */
-  align-items: center;       /* horizontal centering */
+  justify-content: center;
+  /* vertical centering */
+  align-items: center;
+  /* horizontal centering */
 }
 
 .auth-stack {
   display: flex;
   flex-direction: column;
-  align-items: center;       /* center horizontally */
+  align-items: center;
+  /* center horizontally */
 }
 
 .auth-hero {
   text-align: center;
-  margin-bottom: 24px;       /* space between text and card */
+  margin-bottom: 24px;
+  /* space between text and card */
 }
 
 .auth-hero h1 {
@@ -259,8 +265,10 @@ body {
 .center-stack {
   display: flex;
   flex-direction: column;
-  align-items: center;      /* horizontal centering */
-  justify-content: center;  /* vertical centering of stack */
+  align-items: center;
+  /* horizontal centering */
+  justify-content: center;
+  /* vertical centering of stack */
 }
 
 
@@ -367,9 +375,9 @@ body {
 }
 
 .hero-secondary {
-  background: rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.12);
   color: white;
-  border: 1px solid rgba(255,255,255,0.35);
+  border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
 .hero-actions button:hover {
@@ -394,13 +402,13 @@ body {
 .event-card {
   background: #fff;
   border-radius: 18px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .event-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
 }
 
 .event-card-body {
@@ -481,7 +489,8 @@ body {
 
 /* ADMIN HEADER */
 .admin-header {
-  grid-column: 1 / -1; /* spans both columns */
+  grid-column: 1 / -1;
+  /* spans both columns */
   text-align: center;
   margin-bottom: 10px;
 }
@@ -508,7 +517,7 @@ body {
 }
 
 /* ADMIN EVENT ROW */
-#adminEvents > div {
+#adminEvents>div {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -568,7 +577,7 @@ body {
    ADMIN EVENT ROW – FINAL
    ========================= */
 
-#adminEvents > div {
+#adminEvents>div {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -683,7 +692,7 @@ body {
 .nav-login {
   background: transparent;
   color: white;
-  border: 1px solid rgba(255,255,255,0.4);
+  border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .nav-primary {
@@ -692,7 +701,7 @@ body {
 }
 
 .nav-logout {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255, 255, 255, 0.15);
   color: white;
 }
 
@@ -712,17 +721,17 @@ body {
 
 /* ADMIN LOGOUT */
 .admin-top-actions {
-  grid-column: 1 / -1;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
+  position: absolute;
+  top: 28px;
+  right: 40px;
 }
+
 
 .admin-logout {
   padding: 8px 20px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.4);
-  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.15);
   color: white;
   font-size: 0.85rem;
   font-weight: 600;
@@ -730,7 +739,7 @@ body {
 }
 
 .admin-logout:hover {
-  background: rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 /* ADMIN PAGE FIX */
@@ -752,29 +761,36 @@ body {
   padding: 0 20px;
 }
 
-/* HEADER ROW */
 .admin-header {
   grid-column: 1 / -1;
+  position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-
-  margin-bottom: 20px;
+  justify-content: center;
 }
+
 
 .admin-header h1 {
   color: white;
   font-size: 2rem;
   font-weight: 700;
   line-height: 1.3;
+  text-align: center;
+  /* opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeUp 0.9s ease forwards; */
 }
 
 /* LOGOUT BUTTON */
 .admin-logout {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   padding: 8px 18px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.4);
-  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.15);
   color: white;
   font-size: 0.85rem;
   font-weight: 600;
@@ -782,17 +798,70 @@ body {
 }
 
 .admin-logout:hover {
-  background: rgba(255,255,255,0.3);
+  background: rgba(255, 255, 255, 0.3);
 }
 
-@media (max-width: 900px) {
-  .admin-dashboard {
-    grid-template-columns: 1fr;
-  }
+.admin-header h1 {
+  opacity: 0;
+  transform: translateY(25px);
+  animation: adminFadeUp 0.9s ease forwards;
+}
 
-  .admin-header {
-    flex-direction: column;
-    gap: 12px;
-    text-align: center;
+@keyframes adminFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+
+/* LANDING PAGE ANIMATIONS */
+
+.hero-content {
+  opacity: 0;
+  transform: translateY(25px);
+  animation: fadeUp 1s ease forwards;
+}
+
+.hero-actions {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s ease forwards;
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ADMIN PAGE ANIMATIONS */
+
+.admin-header h1 {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.9s ease forwards;
+}
+
+.admin-left,
+.admin-right {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.9s ease forwards;
+}
+
+.admin-right {
+  animation-delay: 0.2s;
+}
+
+.google-btn {
+  background: white;
+  color: #333;
+  border: 1px solid #ddd;
+  font-weight: 600;
+}
+
+.google-btn:hover {
+  background: #f6f6f6;
 }
