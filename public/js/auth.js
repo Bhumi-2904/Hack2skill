@@ -10,8 +10,6 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("✅ auth.js DOM loaded");
-
   initAuth();
 });
 
@@ -21,15 +19,13 @@ function initAuth() {
 
   /* SIGNUP */
   if (signupBtn) {
-    console.log("✅ Signup button found");
-
     signupBtn.addEventListener("click", async () => {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
       const role = document.getElementById("role").value;
 
       if (!email || !password) {
-        alert("Fill all fields");
+        alert("Fill all the fields");
         return;
       }
 
@@ -51,8 +47,6 @@ function initAuth() {
 
   /* LOGIN */
   if (loginBtn) {
-    console.log("✅ Login button found");
-
     loginBtn.addEventListener("click", async () => {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
@@ -69,7 +63,7 @@ function initAuth() {
         const role = snap.data().role;
 
         window.location.href =
-          role === "admin" ? "admin.html" : "index.html";
+          role === "admin" ? "admin.html" : "events.html";
       } catch (err) {
         console.error(err);
         alert(err.message);

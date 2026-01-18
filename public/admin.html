@@ -1,46 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hapnin' | Campus Events</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hapnin' | Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body class="admin-page">
-    <div class="bg-gradient"></div>
+  <div class="bg-gradient"></div>
 
-<div class="page-center">
-    <div class="center-stack">
+  <div class="admin-dashboard">
 
-    <div class="auth-hero">
-      <h1>Set the vibe. Create what’s happening next.</h1>
+    <!-- HEADER -->
+    <div class="admin-header">
+      <h1>
+        Set the vibe.<br />
+        Create what’s happening next.
+      </h1>
+
+      <button id="adminLogoutBtn" class="admin-logout">
+        Logout
+      </button>
     </div>
 
-  <div class="card">
-    <h2>Admin Panel</h2>
+    <!-- LEFT: CREATE EVENT -->
+    <div class="admin-left">
+      <div class="card">
+        <h2>Create Event</h2>
 
-    <input id="eventTitle" placeholder="Event Title" />
-    <input type="date" id="eventDate" />
+        <input
+          type="text"
+          id="eventTitle"
+          placeholder="Event Title"
+        />
 
-    <button id="generateBtn">Generate Description</button>
+        <input
+          type="date"
+          id="eventDate"
+        />
 
-    <textarea id="eventDescription" rows="4"
-      placeholder="Event description..."></textarea>
+        <button id="generateBtn">
+          Generate Description
+        </button>
 
-    <button id="saveBtn">Save Event</button>
+        <textarea
+          id="eventDescription"
+          placeholder="Event description..."
+        ></textarea>
+
+        <button id="saveBtn">
+          Save Event
+        </button>
+      </div>
+    </div>
+
+    <!-- RIGHT: MANAGE EVENTS -->
+    <div class="admin-right">
+      <div class="card">
+        <h2>Manage Events</h2>
+
+        <div id="adminEvents"></div>
+      </div>
+    </div>
+
   </div>
-  <!-- MANAGE EVENTS -->
-<div class="card" style="margin-top: 30px;">
-  <h3 style="text-align:center; margin-bottom:15px; font-size: 22px;">
-    Manage Events
-  </h3>
 
-  <div id="adminEvents"></div>
-</div>
-
-</div>
-
-<script type="module" src="js/admin.js"></script>
-
+  <script type="module" src="js/admin.js"></script>
 </body>
 </html>

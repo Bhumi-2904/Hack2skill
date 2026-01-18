@@ -6,8 +6,7 @@ import { getAuth } from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
-  /* same config */
-    apiKey: "AIzaSyAowY65Z8J7OlDhVD9DXNCPUprzwCM2qJY",
+  apiKey: "AIzaSyAowY65Z8J7OlDhVD9DXNCPUprzwCM2qJY",
   authDomain: "campus-event-reminder.firebaseapp.com",
   projectId: "campus-event-reminder",
   storageBucket: "campus-event-reminder.firebasestorage.app",

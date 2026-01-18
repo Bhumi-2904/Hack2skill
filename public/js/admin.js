@@ -1,53 +1,74 @@
 import { auth, db } from "./firebase.js";
-import { onAuthStateChanged } from
-  "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
 import {
   addDoc,
-  collection
-} from
-  "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-  import {
+  collection,
   getDocs,
   deleteDoc,
-  doc
+  doc,
+  getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+console.log("✅ ADMIN JS LOADED");
 
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("✅ admin.js DOM loaded");
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    window.location.href = "login.html";
+    return;
+  }
 
-  onAuthStateChanged(auth, (user) => {
-    if (!user) {
-      console.log("❌ Not logged in, redirecting");
-      window.location.href = "login.html";
-      return;
+  /* 🔐 ROLE CHECK – SOFT FAIL */
+  try {
+    const snap = await getDoc(doc(db, "users", user.uid));
+
+    if (snap.exists()) {
+      const role = snap.data().role;
+      if (role && role !== "admin") {
+        alert("You are not authorized to access admin panel.");
+        window.location.href = "index.html";
+        return;
+      }
     }
+    // If role doc missing → allow for now
+  } catch (err) {
+    console.warn("⚠️ Role check skipped:", err);
+  }
 
-    console.log("✅ Admin authenticated");
-    attachAdminHandlers();
-  });
+  /* LOGOUT */
+  const logoutBtn = document.getElementById("adminLogoutBtn");
+  if (logoutBtn) {
+    logoutBtn.onclick = async () => {
+      await signOut(auth);
+      window.location.href = "index.html";
+    };
+  }
+
+  attachAdminHandlers();
+  loadAdminEvents();
 });
 
+/* =========================
+   CREATE EVENT HANDLERS
+   ========================= */
 function attachAdminHandlers() {
   const generateBtn = document.getElementById("generateBtn");
   const saveBtn = document.getElementById("saveBtn");
 
   if (!generateBtn || !saveBtn) {
-    console.error("❌ Admin buttons not found");
+    console.error("❌ Admin buttons not found in DOM");
     return;
   }
 
-  console.log("✅ Admin buttons found");
-
   generateBtn.addEventListener("click", async () => {
-    console.log("⚡ Generate clicked");
-
     const title = document.getElementById("eventTitle").value;
     const date = document.getElementById("eventDate").value;
 
     if (!title || !date) {
-      alert("Title aur date daal pehle");
+      alert("Fill the Title and Date fields.");
       return;
     }
 
@@ -55,14 +76,18 @@ function attachAdminHandlers() {
     generateBtn.innerText = "Thinking...";
 
     try {
-      const res = await fetch("https://hack2skill-62n0.onrender.com/generate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title, date })
-      });
+      const res = await fetch(
+        "https://hack2skill-62n0.onrender.com/generate",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ title, date })
+        }
+      );
 
       const data = await res.json();
-      document.getElementById("eventDescription").value = data.text;
+      document.getElementById("eventDescription").value = data.text || "";
+
     } catch (err) {
       console.error(err);
       alert("AI error");
@@ -73,14 +98,12 @@ function attachAdminHandlers() {
   });
 
   saveBtn.addEventListener("click", async () => {
-    console.log("💾 Save clicked");
-
     const title = document.getElementById("eventTitle").value;
     const date = document.getElementById("eventDate").value;
     const description = document.getElementById("eventDescription").value;
 
     if (!title || !date || !description) {
-      alert("Saare fields bhar");
+      alert("Fill all the fields.");
       return;
     }
 
@@ -94,16 +117,27 @@ function attachAdminHandlers() {
       document.getElementById("eventTitle").value = "";
       document.getElementById("eventDate").value = "";
       document.getElementById("eventDescription").value = "";
+
+      loadAdminEvents();
+
     } catch (err) {
       console.error(err);
       alert("Firestore error");
     }
   });
+}
 
-  loadAdminEvents();
-  async function loadAdminEvents() {
+/* =========================
+   LOAD ADMIN EVENTS
+   ========================= */
+async function loadAdminEvents() {
+  console.log("📋 Loading admin events");
+
   const container = document.getElementById("adminEvents");
-  if (!container) return;
+  if (!container) {
+    console.error("❌ adminEvents container missing");
+    return;
+  }
 
   container.innerHTML = "";
 
@@ -111,7 +145,8 @@ function attachAdminHandlers() {
     const snapshot = await getDocs(collection(db, "events"));
 
     if (snapshot.empty) {
-      container.innerHTML = "<p>No events yet.</p>";
+      container.innerHTML =
+        "<p style='text-align:center; opacity:0.7;'>No events yet.</p>";
       return;
     }
 
@@ -119,44 +154,27 @@ function attachAdminHandlers() {
       const data = eventDoc.data();
 
       const div = document.createElement("div");
-      div.style.border = "1px solid #eee";
-      div.style.borderRadius = "10px";
-      div.style.padding = "12px";
-      div.style.marginBottom = "10px";
 
       div.innerHTML = `
-        <strong>${data.title}</strong><br/>
-        <small>${data.date}</small>
-        <br/>
-        <button class="delete-btn">Delete</button>
+        <div class="admin-event-info">
+          <strong>${data.title}</strong>
+          <small>${data.date}</small>
+        </div>
+        <button class="delete-icon-btn" title="Delete event">🗑️</button>
       `;
 
-      const deleteBtn = div.querySelector(".delete-btn");
-
-      deleteBtn.addEventListener("click", async () => {
-        const confirmDelete = confirm(
-          `Delete "${data.title}"? This cannot be undone.`
-        );
-
-        if (!confirmDelete) return;
-
-        try {
-          await deleteDoc(doc(db, "events", eventDoc.id));
-          alert("Event deleted");
-          loadAdminEvents(); // refresh list
-        } catch (err) {
-          console.error(err);
-          alert("Delete failed");
-        }
-      });
+      div.querySelector(".delete-icon-btn").onclick = async () => {
+        if (!confirm(`Delete "${data.title}"?`)) return;
+        await deleteDoc(doc(db, "events", eventDoc.id));
+        loadAdminEvents();
+      };
 
       container.appendChild(div);
     });
 
   } catch (err) {
-    console.error(err);
-    container.innerHTML = "<p>Error loading events</p>";
+    console.error("❌ Error loading events:", err);
+    container.innerHTML =
+      "<p style='text-align:center; color:#c0393b;'>Error loading events</p>";
   }
-}
-
 }

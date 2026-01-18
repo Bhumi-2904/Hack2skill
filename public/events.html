@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hapnin' | Campus Events</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&family=Poppins:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <span class="nav-logo">Hapnin'</span>
+        </div>
+
+        <div class="nav-right" id="navActions">
+            <!-- injected by JS -->
+        </div>
+    </nav>
+
+    <!-- BACKGROUND -->
+    <div class="bg-gradient"></div>
+
+    <!-- EVENTS SECTION -->
+    <section class="events-section" id="events">
+        <h2>
+            Upcoming <span class="highlight">Campus Events</span>
+        </h2>
+
+        <p class="events-subtext">
+            Discover what's happening on campus. Browse events and add them to your calendar.
+        </p>
+
+        <div id="eventsContainer" class="events-grid"></div>
+    </section>
+
+
+    <!-- MAIN SCRIPT -->
+    <script type="module" src="js/events-guard.js"></script>
+    <script type="module" src="js/events.js"></script>
+    <script type="module" src="js/navbar.js"></script>
+
+
+</body>
+
+</html>

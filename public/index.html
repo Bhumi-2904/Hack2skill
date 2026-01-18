@@ -5,7 +5,6 @@
   <meta charset="UTF-8" />
   <title>Hapnin' | Campus Events</title>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -16,30 +15,37 @@
 </head>
 
 <body>
-    <!-- BACKGROUND -->
-    <div class="bg-gradient"></div>
+  <nav class="navbar">
+    <div class="nav-left">
+      <span class="nav-logo">Hapnin'</span>
+    </div>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-      <div class="hero-content">
-        <span class="brand-outline">Hapnin'</span>
-        <h1>If it’s happening,<br>it’s here.</h1>
-        <p class="tagline">
-          Discover campus events. Connect. Create unforgettable memories.
-        </p>
-        <span class="scroll-hint">↓ Explore upcoming events</span>
+    <div class="nav-right" id="navActions">
+      <!-- injected by JS -->
+    </div>
+  </nav>
+
+  <!-- BACKGROUND -->
+  <div class="bg-gradient"></div>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="brand-outline">Hapnin'</span>
+      <h1>If it’s happening,<br>it’s here.</h1>
+      <p class="tagline">
+        Discover campus events. Connect. Create unforgettable memories.
+      </p>
+      <div class="hero-actions" id="heroActions">
+        <!-- Buttons will be injected by JS -->
       </div>
-    </section>
 
-    <!-- EVENTS SECTION -->
-    <section class="events-section">
-      <h2>Upcoming Campus Events</h2>
-      <div id="events" class="events-grid"></div>
-    </section>
+    </div>
+  </section>
 
-    <!-- MAIN SCRIPT -->
-    <script type="module" src="js/events.js"></script>
+  <script type="module" src="js/landing.js"></script>
+  <script type="module" src="js/navbar.js"></script>
 
-  </body>
+</body>
 
 </html>
