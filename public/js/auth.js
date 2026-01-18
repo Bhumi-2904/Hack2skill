@@ -21,13 +21,33 @@ import {
 document.body.style.visibility = "hidden";
 
 onAuthStateChanged(auth, async (user) => {
+
+  // ✅ RUN REDIRECT LOGIC ONLY ON LOGIN / SIGNUP PAGES
+  const isAuthPage =
+    location.pathname.includes("login") ||
+    location.pathname.includes("signup");
+
+  if (!isAuthPage) {
+    document.body.style.visibility = "visible";
+    return;
+  }
+
+  // ✅ USER NOT LOGGED IN → SHOW PAGE
   if (!user) {
     document.body.style.visibility = "visible";
     return;
   }
 
+  // ✅ USER LOGGED IN → CHECK ROLE
   const snap = await getDoc(doc(db, "users", user.uid));
-  const role = snap.data()?.role;
+
+  // 🔐 Firestore doc might not exist yet (Google first login)
+  if (!snap.exists()) {
+    document.body.style.visibility = "visible";
+    return;
+  }
+
+  const role = snap.data().role;
 
   window.location.href =
     role === "admin" ? "admin.html" : "events.html";
@@ -94,12 +114,19 @@ function initAuth() {
           email,
           password
         );
+        const snap = await getDoc(doc(db, "users", user.uid));
 
-        const snap = await getDoc(doc(db, "users", cred.user.uid));
-        const role = snap.data()?.role;
+        if (!snap.exists()) {
+          // Firestore doc not ready yet, wait silently
+          document.body.style.visibility = "visible";
+          return;
+        }
+
+        const role = snap.data().role;
 
         window.location.href =
           role === "admin" ? "admin.html" : "events.html";
+
 
       } catch (err) {
         console.error(err);

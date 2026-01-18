@@ -865,3 +865,58 @@ body {
 .google-btn:hover {
   background: #f6f6f6;
 }
+
+/* =========================
+   ADMIN PAGE – RESPONSIVE FIX
+   ========================= */
+
+@media (max-width: 900px) {
+  .admin-dashboard {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .admin-left,
+  .admin-right {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-header {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .admin-logout {
+    position: static;
+    transform: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-page {
+    padding-top: 80px;
+  }
+
+  .admin-dashboard {
+    padding: 0 12px;
+  }
+
+  .card {
+    padding: 20px;
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  #adminEvents > div {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .delete-icon-btn {
+    align-self: flex-end;
+  }
+}
